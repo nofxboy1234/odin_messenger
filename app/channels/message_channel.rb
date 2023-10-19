@@ -11,4 +11,10 @@ class MessageChannel < ApplicationCable::Channel
     
     # Any cleanup needed when channel is unsubscribed
   end
+
+  def receive(data)
+    puts '**** MessageChannel#receive(data) ****'
+
+    ActionCable.server.broadcast('message', data)
+  end
 end
